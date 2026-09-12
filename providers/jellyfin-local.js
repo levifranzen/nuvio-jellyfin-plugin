@@ -32,11 +32,20 @@ function findItemByTmdbId(tmdbId, mediaType) {
     return jfGet('/Items', {
         Recursive: true,
         IncludeItemTypes: itemType,
-        AnyProviderIdEquals: 'Tmdb.' + tmdbId,
-        Fields: 'ProviderIds,MediaSources'
+        Fields: 'ProviderIds'
     }).then(function (data) {
-        return (data.Items && data.Items[0]) || null;
+        var items = data.Items || [];
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].ProviderIds && items[i].ProviderIds.Tmdb === String(tmdbId)) {
+                return items[i];
+            }
+        }
+        return null;
     });
+}
+
+function getItemWithSources(itemId) {
+    return jfGet('/Items/' + itemId, { Fields: 'MediaSources' });
 }
 
 function findEpisode(seriesId, season, episode) {
@@ -80,7 +89,7 @@ function getStreams(tmdbId, mediaType, season, episode) {
         if (mediaType === 'tv') {
             return findEpisode(item.Id, season, episode).then(streamsFromTarget);
         }
-        return streamsFromTarget(item);
+        return getItemWithSources(item.Id).then(streamsFromTarget);
     }).catch(function () {
         return [];
     });

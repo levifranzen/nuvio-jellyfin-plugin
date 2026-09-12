@@ -8,18 +8,19 @@ var JELLYFIN_API_KEY = "2918a110412240f3b1300cf28b997cb9";
 
 function jfGet(path, params) {
     params = params || {};
-    params.api_key = JELLYFIN_API_KEY;
     var query = Object.keys(params).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
     }).join('&');
 
-    return fetch(JELLYFIN_URL + path + '?' + query).then(function (res) {
+    return fetch(JELLYFIN_URL + path + '?' + query, {
+        headers: { 'Authorization': 'MediaBrowser Token="' + JELLYFIN_API_KEY + '"' }
+    }).then(function (res) {
         return res.json();
     });
 }
 
 function buildStreamUrl(itemId, mediaSourceId) {
-    var url = JELLYFIN_URL + '/Videos/' + itemId + '/stream?Static=true&api_key=' + encodeURIComponent(JELLYFIN_API_KEY);
+    var url = JELLYFIN_URL + '/Videos/' + itemId + '/stream?Static=true&ApiKey=' + encodeURIComponent(JELLYFIN_API_KEY);
     if (mediaSourceId) {
         url += '&MediaSourceId=' + encodeURIComponent(mediaSourceId);
     }

@@ -4,7 +4,7 @@
  */
 
 var JELLYFIN_URL = "http://192.168.1.253:8096";
-var JELLYFIN_API_KEY = "07c08bed43bd4d0b90adbd02de0345e1";
+var JELLYFIN_API_KEY = "2918a110412240f3b1300cf28b997cb9";
 
 function jfGet(path, params) {
     params = params || {};

@@ -9,7 +9,7 @@
       "version": "1.0.0",
       "author": "Levi",
       "supportedTypes": ["movie", "tv"],
-      "filename": "providers/jellyfin.js",
+      "filename": "providers/jellyfin-local.js",
       "enabled": true
     }
   ]

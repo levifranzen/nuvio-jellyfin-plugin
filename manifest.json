@@ -1,0 +1,16 @@
+{
+  "name": "Jellyfin",
+  "version": "1.0.0",
+  "scrapers": [
+    {
+      "id": "jellyfin",
+      "name": "Jellyfin",
+      "description": "Reproduz mídia diretamente do meu Jellyfin Server local, casando pelo TMDB ID",
+      "version": "1.0.0",
+      "author": "Levi",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/jellyfin.js",
+      "enabled": true
+    }
+  ]
+}

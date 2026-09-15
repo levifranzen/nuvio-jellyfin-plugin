@@ -45,7 +45,10 @@ function findItemByTmdbId(tmdbId, mediaType) {
 }
 
 function getItemWithSources(itemId) {
-    return jfGet('/Items/' + itemId, { Fields: 'MediaSources' });
+  return jfGet('/Items', { ids: itemId, Fields: 'MediaSources' }).then(function (data) {
+    var items = data.Items || [];
+    return items[0] || null;
+  });
 }
 
 function findEpisode(seriesId, season, episode) {

@@ -3,8 +3,8 @@
  * Arquivo unico — sem build, sem import/export, sem async/await.
  */
 
-var JELLYFIN_URL = "http://192.168.1.253:8096";
-var JELLYFIN_API_KEY = "2918a110412240f3b1300cf28b997cb9";
+var JELLYFIN_URL = "http://YourLANIpAddress:Port";
+var JELLYFIN_API_KEY = "YourJellyfinApiKey";
 
 function jfGet(path, params) {
     params = params || {};
